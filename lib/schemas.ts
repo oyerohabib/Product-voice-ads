@@ -20,6 +20,8 @@ export const productInputSchema = z.object({
 
 export type ProductInput = z.infer<typeof productInputSchema>;
 
+export type ProductDraft = Omit<ProductInput, "language">;
+
 export const scriptOutputSchema = z.object({
   script: z.string(),
 });
