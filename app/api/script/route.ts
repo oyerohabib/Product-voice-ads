@@ -1,7 +1,7 @@
 import { zodTextFormat } from "openai/helpers/zod";
 import { AppError, errorResponse } from "@/lib/errors";
 import { LANGUAGES, measureScript, type ScriptLength } from "@/lib/languages";
-import { getOpenAI, openaiModel } from "@/lib/openai";
+import { openAIFromRequest, openaiModel } from "@/lib/openai";
 import { scriptInstructions, scriptPrompt } from "@/lib/prompt";
 import { productInputSchema, scriptOutputSchema } from "@/lib/schemas";
 
@@ -9,9 +9,9 @@ const MAX_ATTEMPTS = 2;
 
 export async function POST(request: Request) {
   try {
+    const openai = openAIFromRequest(request);
     const input = productInputSchema.parse(await request.json());
     const language = LANGUAGES[input.language];
-    const openai = getOpenAI();
 
     let script = "";
     let length: ScriptLength | null = null;

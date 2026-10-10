@@ -1,13 +1,12 @@
 import OpenAI from "openai";
-import { MissingKeyError } from "./errors";
+import { AppError } from "./errors";
+import { OPENAI_KEY_HEADER } from "./openai-key";
 
-let client: OpenAI | null = null;
-
-export function getOpenAI() {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) throw new MissingKeyError("OPENAI_API_KEY");
-  client ??= new OpenAI({ apiKey });
-  return client;
+// Each user brings their own key, so usage is billed to their OpenAI account.
+export function openAIFromRequest(request: Request) {
+  const apiKey = request.headers.get(OPENAI_KEY_HEADER)?.trim();
+  if (!apiKey) throw new AppError("Add your OpenAI API key to use the AI script tools.", 401);
+  return new OpenAI({ apiKey, maxRetries: 1 });
 }
 
 export function openaiModel() {
