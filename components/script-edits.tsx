@@ -115,7 +115,7 @@ export function ScriptEdits({
           placeholder='Or say what to change, e.g. "mention free delivery in Lagos"'
           maxLength={300}
           aria-label="Edit instruction"
-          className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-900 outline-none transition focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/10"
+          className="w-full min-w-0 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-base text-zinc-900 sm:text-sm outline-none transition focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/10"
         />
         <button
           type="submit"

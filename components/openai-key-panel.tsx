@@ -88,7 +88,7 @@ export function ApiKeyDialog({ provider, keyState, open, onClose }: Props) {
               autoComplete="off"
               spellCheck={false}
               aria-label={`${provider === "openai" ? "OpenAI" : "ElevenLabs"} API key`}
-              className="w-full rounded-lg border border-zinc-300 bg-white py-2 pr-16 pl-3 font-mono text-sm text-zinc-900 outline-none transition focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/10"
+              className="w-full rounded-lg border border-zinc-300 bg-white py-2 pr-16 pl-3 font-mono text-base text-zinc-900 sm:text-sm outline-none transition focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/10"
             />
             <button
               type="button"
