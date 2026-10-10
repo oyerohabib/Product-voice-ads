@@ -258,7 +258,7 @@ export function AdStudio() {
           </div>
 
           <div>
-            <div className="-mx-1 flex snap-x gap-2 overflow-x-auto px-1 pb-1 sm:grid sm:grid-cols-3 sm:overflow-visible">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {PRODUCT_EXAMPLES.map((example) => {
                 const active = example.id === exampleId;
                 return (
@@ -267,7 +267,7 @@ export function AdStudio() {
                     type="button"
                     onClick={() => pickExample(example.id)}
                     aria-pressed={active}
-                    className={`min-w-44 snap-start rounded-xl border p-3 text-left transition sm:min-w-0 ${
+                    className={`min-w-0 rounded-xl border p-3 text-left transition ${
                       active
                         ? "border-zinc-900 bg-zinc-900 text-white"
                         : "border-zinc-200 bg-zinc-50 text-zinc-900 hover:border-zinc-400 hover:bg-white"
