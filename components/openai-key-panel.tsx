@@ -54,7 +54,7 @@ export function ApiKeyDialog({ provider, keyState, open, onClose }: Props) {
         if (event.target === event.currentTarget) event.currentTarget.close();
       }}
       aria-labelledby={titleId}
-      className="m-auto w-[calc(100%-2rem)] max-w-lg rounded-2xl bg-white p-0 shadow-xl backdrop:bg-zinc-900/40"
+      className="m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-2xl bg-white p-0 shadow-xl backdrop:bg-zinc-900/40"
     >
       <div className="space-y-4 p-5 sm:p-6">
         <div className="flex items-start justify-between gap-3">
