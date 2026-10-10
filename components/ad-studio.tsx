@@ -215,7 +215,7 @@ export function AdStudio() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:py-14">
+    <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-10 lg:py-14">
       <ApiKeyDialog
         provider="openai"
         keyState={keyState}
@@ -248,8 +248,8 @@ export function AdStudio() {
         </div>
       )}
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <section className="space-y-5 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm sm:p-6">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
+        <section className="min-w-0 space-y-5 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-6">
           <div>
             <h2 className="text-base font-semibold text-zinc-900">1. Pick a product</h2>
             <p className="mt-1 text-sm text-zinc-600">
@@ -423,7 +423,7 @@ export function AdStudio() {
           )}
         </section>
 
-        <section className="space-y-5 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm sm:p-6 lg:sticky lg:top-6 lg:self-start">
+        <section className="min-w-0 space-y-5 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-6 lg:sticky lg:top-6 lg:self-start">
           <h2 className="text-base font-semibold text-zinc-900">2. Script and voice</h2>
 
           <fieldset>
