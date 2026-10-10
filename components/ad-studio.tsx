@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { BuiltBy } from "@/components/built-by";
 import { DeliveryControls } from "@/components/delivery-controls";
 import { MusicPanel } from "@/components/music-panel";
 import { ApiKeyDialog, type KeyProvider } from "@/components/openai-key-panel";
@@ -229,14 +230,17 @@ export function AdStudio() {
         onClose={() => setKeyDialog(null)}
       />
 
-      <header className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
-          Product Voice Ads
-        </h1>
-        <p className="mt-2 max-w-2xl text-sm text-zinc-600 sm:text-base">
-          Hear how a product sounds as a short voice ad. Pick a product, choose a voice, and
-          generate the voiceover with ElevenLabs.
-        </p>
+      <header className="mb-6 flex flex-col-reverse gap-4 sm:mb-8 sm:flex-row sm:items-start sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
+            Product Voice Ads
+          </h1>
+          <p className="mt-2 max-w-2xl text-sm text-zinc-600 sm:text-base">
+            Hear how a product sounds as a short voice ad. Pick a product, choose a voice, and
+            generate the voiceover with ElevenLabs.
+          </p>
+        </div>
+        <BuiltBy />
       </header>
 
       {error && (
