@@ -21,7 +21,16 @@ function json(status: number, error: string) {
   return Response.json({ error }, { status });
 }
 
-function elevenLabsDetail(body: unknown): string | undefined {
+export function elevenLabsAccessProblem(err: unknown): string | undefined {
+  if (!(err instanceof ElevenLabsError)) return undefined;
+  const detail = elevenLabsDetail(err.body) ?? err.message;
+  const blocked =
+    [401, 402, 403].includes(err.statusCode ?? 0) ||
+    /free users|paid plan|permission/i.test(detail);
+  return blocked ? detail : undefined;
+}
+
+export function elevenLabsDetail(body: unknown): string | undefined {
   if (!body || typeof body !== "object" || !("detail" in body)) return undefined;
   const detail = (body as { detail: unknown }).detail;
   if (typeof detail === "string") return detail;
