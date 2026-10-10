@@ -37,6 +37,12 @@ export const speechInputSchema = z.object({
 
 export type SpeechInput = z.infer<typeof speechInputSchema>;
 
+export const scriptEditInputSchema = z.object({
+  script: z.string().trim().min(1, "There is no script to edit yet.").max(1500),
+  language: languageSchema,
+  instruction: z.string().trim().min(2, "Say what you want to change.").max(300),
+});
+
 export type VoiceOption = {
   id: string;
   name: string;
