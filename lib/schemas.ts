@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { ENERGIES, PACES } from "./delivery";
 import { LANGUAGE_CODES } from "./languages";
+import { MUSIC_STYLE_IDS } from "./music";
 
 export const TONES = ["friendly", "energetic", "calm", "premium"] as const;
 
@@ -41,6 +42,11 @@ export const scriptEditInputSchema = z.object({
   script: z.string().trim().min(1, "There is no script to edit yet.").max(1500),
   language: languageSchema,
   instruction: z.string().trim().min(2, "Say what you want to change.").max(300),
+});
+
+export const musicInputSchema = z.object({
+  style: z.enum(MUSIC_STYLE_IDS),
+  durationMs: z.number().int().min(5000).max(90000),
 });
 
 export type VoiceOption = {
