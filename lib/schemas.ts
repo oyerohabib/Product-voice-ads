@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ENERGIES, PACES } from "./delivery";
 import { LANGUAGE_CODES } from "./languages";
 
 export const TONES = ["friendly", "energetic", "calm", "premium"] as const;
@@ -30,6 +31,8 @@ export const speechInputSchema = z.object({
   script: z.string().trim().min(1, "The script is empty.").max(1500),
   voiceId: z.string().trim().min(1, "Pick a voice first."),
   language: languageSchema,
+  energy: z.enum(ENERGIES).default("natural"),
+  pace: z.enum(PACES).default("normal"),
 });
 
 export type SpeechInput = z.infer<typeof speechInputSchema>;
