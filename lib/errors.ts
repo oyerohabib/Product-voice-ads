@@ -38,11 +38,18 @@ export function errorResponse(err: unknown) {
   if (err instanceof SyntaxError) return json(400, "Request body must be valid JSON.");
 
   if (err instanceof APIError) {
-    if (err.status === 401) return json(502, "OpenAI rejected the API key. Check OPENAI_API_KEY.");
+    const message = err.message.replace(/^\d{3}\s*/, "");
+    if (err.status === 401) return json(401, `OpenAI rejected this API key: ${message}`);
     if (err.status === 429) {
-      return json(429, "OpenAI rate limit or quota reached. Wait a moment or check your billing.");
+      if (err.type === "insufficient_quota" || err.code === "insufficient_quota") {
+        return json(
+          429,
+          `This OpenAI account has no API credits (${err.code ?? err.type}). API billing is separate from ChatGPT plans: add credits at platform.openai.com/settings/organization/billing.`,
+        );
+      }
+      return json(429, `OpenAI rate limit (${err.code ?? "rate_limit_exceeded"}): ${message}`);
     }
-    return json(502, `OpenAI error: ${err.message}`);
+    return json(502, `OpenAI error: ${message}`);
   }
 
   if (err instanceof ElevenLabsError) {
